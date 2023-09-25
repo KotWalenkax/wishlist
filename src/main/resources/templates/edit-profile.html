@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user</title>
+</head>
+<body>
+    <h2>Edit user</h2>
+    <form th:action="@{/profile/edit}" th:object="${userDTO}" method="post">
+        Old name: <p><span th:text="${oldName}"></span></p>
+        Name: <input type="text"  th:field="*{username}"/>
+        <span th:if="${#fields.hasErrors('username')}"
+              th:errors="*{username}">Username Error</span> <br />
+        Password: <input type="password" th:field="*{password}"/>
+        <span th:if="${#fields.hasErrors('password')}"
+              th:errors="*{password}">Password Error</span> <br />
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

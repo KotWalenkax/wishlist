@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit wish</title>
+</head>
+<body>
+    <h2>Edit wish</h2>
+    <form th:action="@{/{id}/wishes/edit(id=${wlId})}" th:object="${wishDTO}" method="post">
+        <input value="*{id}" type="hidden" th:field="*{id}">
+        Old description: <p><span th:text="${oldDescription}"></span></p>
+        Description: <input type="text" th:field="*{description}">
+        <span th:if="${#fields.hasErrors('description')}"
+              th:errors="*{description}">Description Error</span> <br />
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

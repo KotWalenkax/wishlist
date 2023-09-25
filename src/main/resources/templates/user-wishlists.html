@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your wishlists</title>
+</head>
+<body>
+    <h2>Your wishlists</h2>
+    <div th:each="wishlist : ${wishlists}">
+        <div>
+            <p>Name: <a th:href="@{/{id}/wishes(id=${wishlist.id})}" th:text="${wishlist.name}"></a></p>
+            <p><a th:href="@{/wishlists/users/{id}/edit(id=${wishlist.id})}">Edit</a></p>
+            <p><a th:href="@{/wishlists/users/{id}/delete(id=${wishlist.id})}">Delete</a></p>
+        </div>
+    </div>
+
+    <h2>New wishlist</h2>
+    <form th:action="@{/wishlists/users/create}" th:object="${wishlistDTO}" method="post">
+        Name: <input type="text" th:field="*{name}">
+        <span th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}">Name Error</span> <br />
+        Password: <input type="password" th:field="*{password}">
+        <span th:if="${#fields.hasErrors('password')}"
+              th:errors="*{password}">Password Error</span> <br />
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    <div>
+        <p>Name: <span th:text="${user.username}"></span></p>
+        <p><a href="/profile/edit">Edit profile</a></p>
+        <p><a href="/wishlists/users">Your wishlists</a></p>
+        <p><a href="/wishlists/accessible">Accessible wishlists</a></p>
+    </div>
+</body>
+</html>

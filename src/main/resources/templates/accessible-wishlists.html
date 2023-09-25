@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Accessible wishlists</title>
+</head>
+<body>
+    <h2>Accessible wishlists</h2>
+    <div th:each="wishlist : ${wishlists}">
+        <div>
+            <p>Name: <a th:href="@{/{id}/wishes(id=${wishlist.id})}" th:text="${wishlist.name}"></a></p>
+            <p><a th:href="@{/wishlists/accessible/{id}/delete(id=${wishlist.id})}">Delete</a></p>
+        </div>
+    </div>
+
+    <h2>Get access</h2>
+    <form th:action="@{/wishlists/accessible/access}" th:object="${wishlistDTO}" method="post">
+        Wishlist ID: <input type="text" th:field="*{id}">
+        <span th:if="${#fields.hasErrors('id')}"
+              th:errors="*{id}">ID Error</span> <br />
+        Password: <input type="password" th:field="*{password}">
+        <span th:if="${#fields.hasErrors('password')}"
+              th:errors="*{password}">Password Error</span> <br />
+        <button type="submit">Get access</button>
+    </form>
+
+    <div th:if="${param.error}">
+        Bad credentials
+    </div>
+</body>
+</html>

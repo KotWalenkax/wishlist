@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishes</title>
+</head>
+<body>
+    <h2>Wishes</h2>
+    <div th:each="wish : ${wishes}">
+        <div>
+            <p>Description: <span th:text="${wish.description}"></span></p>
+            <p><a th:href="@{/{wlId}/wishes/{wId}/edit(wlId=${wlId}, wId=${wish.id})}">Edit</a></p>
+            <p><a th:href="@{/{wlId}/wishes/{wId}/delete(wlId=${wlId}, wId=${wish.id})}">Delete</a></p>
+        </div>
+    </div>
+
+    <h2>New wish</h2>
+    <form th:action="@{/{id}/wishes/create(id=${wlId})}" th:object="${wishDTO}" method="post">
+        Description: <input type="text" th:field="*{description}">
+        <span th:if="${#fields.hasErrors('description')}"
+              th:errors="*{description}">Description Error</span> <br />
+        <button type="submit">Create</button>
+    </form>
+
+</body>
+</html>
