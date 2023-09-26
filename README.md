@@ -12,5 +12,7 @@ Technologies:
 - Thymeleaf
 - Validation
 - Lombok
-- PostgreSQ:
+- PostgreSQL
 - H2
+- JUnit 5
+- Mockito
